@@ -1,0 +1,14 @@
+{
+    "editor.codeActionsOnSave": {
+        "source": "always",
+        "source.convertImportFormat": "always",
+        "source.fixAll": "always",
+        "source.fixAll.pylance": "always",
+        "source.generate.tests": "always",
+        "source.organizeImports": "always",
+        "source.sortMembers": "always",
+        "source.unusedImports": "always",
+    },
+    "java.compile.nullAnalysis.mode": "automatic",
+    "cmake.ignoreCMakeListsMissing": true
+}
