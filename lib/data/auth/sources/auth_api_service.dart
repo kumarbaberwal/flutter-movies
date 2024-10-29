@@ -6,12 +6,12 @@ import 'package:movies/data/auth/models/signin_req_params.dart';
 import 'package:movies/data/auth/models/signup_req_params.dart';
 import 'package:movies/service_locator.dart';
 
-abstract class AuthApiService {
+abstract class AuthService {
   Future<Either> signin(SigninReqParams params);
   Future<Either> signup(SignupReqParams params);
 }
 
-class AuthApiServiceImpl extends AuthApiService {
+class AuthApiServiceImpl extends AuthService {
   @override
   Future<Either> signin(SigninReqParams params) async {
     try {

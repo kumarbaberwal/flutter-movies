@@ -21,7 +21,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<Either> signin(SigninReqParams params) async {
-    var data = await sl<AuthApiService>().signin(params);
+    var data = await sl<AuthService>().signin(params);
     return data.fold((error) {
       return Left(error);
     }, (data) async {
@@ -34,7 +34,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<Either> signup(SignupReqParams params) async {
-    var data = await sl<AuthApiService>().signup(params);
+    var data = await sl<AuthService>().signup(params);
     return data.fold((error) {
       return Left(error);
     }, (data) async {

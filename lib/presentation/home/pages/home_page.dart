@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:movies/common/widgets/appbar/app_bar.dart';
+import 'package:movies/core/configs/assets/app_vectors.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Home Page',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 30,
-            color: Colors.white,
-          ),
+    return Scaffold(
+      appBar: BasicAppbar(
+        hideBack: true,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: SvgPicture.asset(AppVectors.logo),
         ),
       ),
     );
