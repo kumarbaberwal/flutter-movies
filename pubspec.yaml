@@ -43,6 +43,7 @@ dependencies:
   dio: ^5.7.0
   logger: ^2.4.0
   flutter_svg: ^2.0.10+1
+  fan_carousel_image_slider: ^1.0.1
 
 dev_dependencies:
   flutter_test:

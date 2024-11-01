@@ -12,7 +12,8 @@ class DioClient {
               responseType: ResponseType.json,
               sendTimeout: const Duration(seconds: 10),
               receiveTimeout: const Duration(seconds: 10)),
-        )..interceptors.addAll([LoggerInterceptor()]);
+        )..interceptors
+            .addAll([AuthorizationInterceptor(), LoggerInterceptor()]);
 
   // DELETE METHOD
   Future<dynamic> delete(

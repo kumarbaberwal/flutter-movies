@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class MovieEntity {
   final String? backdropPath;
   final int? id;
@@ -15,21 +14,22 @@ class MovieEntity {
   final bool? video;
   final double? voteAverage;
   final int? voteCount;
+
   MovieEntity({
-    this.backdropPath,
-    this.id,
-    this.title,
-    this.originalTitle,
-    this.overview,
-    this.posterPath,
-    this.mediaType,
-    this.adult,
-    this.originalLanguage,
+    required this.backdropPath,
+    required this.id,
+    required this.title,
+    required this.originalTitle,
+    required this.overview,
+    required this.posterPath,
+    required this.mediaType,
+    required this.adult,
+    required this.originalLanguage,
     required this.genreIds,
-    this.popularity,
-    this.releaseDate,
-    this.video,
-    this.voteAverage,
-    this.voteCount,
+    required this.popularity,
+    required this.releaseDate,
+    required this.video,
+    required this.voteAverage,
+    required this.voteCount,
   });
 }
