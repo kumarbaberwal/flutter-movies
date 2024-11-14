@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movies/domain/movie/entities/movie_entity.dart';
 import 'package:movies/domain/tv/entities/tv_entity.dart';
 
 import '../../../core/configs/theme/app_colors.dart';
