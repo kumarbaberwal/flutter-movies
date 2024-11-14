@@ -14,7 +14,8 @@ class MovieRepositoryImpl extends MovieRepository {
     return returnedData.fold((error) {
       return Left(error);
     }, (data) {
-      var trailer = TrailerMapper.toEntity(TrailerModel.fromJson(data));
+      var trailer =
+          TrailerMapper.toEntity(TrailerModel.fromJson(data['trailer']));
       return Right(trailer);
     });
   }
