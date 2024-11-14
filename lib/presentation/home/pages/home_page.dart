@@ -4,6 +4,7 @@ import 'package:movies/common/widgets/appbar/app_bar.dart';
 import 'package:movies/core/configs/assets/app_vectors.dart';
 import 'package:movies/presentation/home/widgets/category_text.dart';
 import 'package:movies/presentation/home/widgets/now_playing_movies.dart';
+import 'package:movies/presentation/home/widgets/popular_tv.dart';
 import 'package:movies/presentation/home/widgets/trendings_movies.dart';
 
 class HomePage extends StatelessWidget {
@@ -30,6 +31,14 @@ class HomePage extends StatelessWidget {
               height: 16,
             ),
             NowPlayingMovies(),
+            SizedBox(
+              height: 16,
+            ),
+            CategoryText(category: "Popular TV"),
+            SizedBox(
+              height: 16,
+            ),
+            PopularTv(),
             SizedBox(
               height: 16,
             ),
