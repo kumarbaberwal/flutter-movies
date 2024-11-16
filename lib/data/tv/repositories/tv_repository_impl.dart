@@ -9,6 +9,19 @@ import 'package:movies/service_locator.dart';
 
 class TvRepositoryImpl extends TvRepository {
   @override
+  Future<Either> getKeywords(int tvId) async {
+    var returnedData = await sl<TvService>().getKeywords(tvId);
+    return returnedData.fold((error) {
+      return Left(error);
+    }, (data) {
+      var movies = List.from(data['content'])
+          .map((item) => KeywordMapper.toEntity(KeywordModel.fromJson(item)))
+          .toList();
+      return Right(movies);
+    });
+  }
+
+  @override
   Future<Either> getPopularTv() async {
     var returnedData = await sl<TvService>().getPopularTv();
 
@@ -47,15 +60,15 @@ class TvRepositoryImpl extends TvRepository {
       return Right(movies);
     });
   }
-  
+
   @override
-  Future<Either> getKeywords(int tvId) async {
-   var returnedData = await sl<TvService>().getKeywords(tvId);
+  Future<Either> searchTv(String query) async {
+    var returnedData = await sl<TvService>().searchTv(query);
     return returnedData.fold((error) {
       return Left(error);
     }, (data) {
       var movies = List.from(data['content'])
-          .map((item) => KeywordMapper.toEntity(KeywordModel.fromJson(item)))
+          .map((item) => TvMapper.toEntity(TVModel.fromJson(item)))
           .toList();
       return Right(movies);
     });

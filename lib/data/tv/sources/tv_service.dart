@@ -47,6 +47,16 @@ class TvApiServiceImpl extends TvService {
       return Left(e.response!.data['message']);
     }
   }
+
+  @override
+  Future<Either> searchTv(String query) async {
+    try {
+      var response = await sl<DioClient>().get("${ApiUrl.search}/tv/$query");
+      return Right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }
 }
 
 abstract class TvService {
@@ -54,4 +64,5 @@ abstract class TvService {
   Future<Either> getPopularTv();
   Future<Either> getRecommendationTv(int tvId);
   Future<Either> getSimilarTv(int tvId);
+  Future<Either> searchTv(String query);
 }
