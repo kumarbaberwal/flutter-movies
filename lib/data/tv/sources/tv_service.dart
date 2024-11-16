@@ -51,7 +51,7 @@ class TvApiServiceImpl extends TvService {
   @override
   Future<Either> searchTv(String query) async {
     try {
-      var response = await sl<DioClient>().get("${ApiUrl.search}/tv/$query");
+      var response = await sl<DioClient>().get("${ApiUrl.search}tv/$query");
       return Right(response.data);
     } on DioException catch (e) {
       return Left(e.response!.data['message']);

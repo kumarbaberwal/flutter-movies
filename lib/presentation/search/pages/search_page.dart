@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/common/widgets/appbar/app_bar.dart';
+import 'package:movies/presentation/search/cubit/search_cubit.dart';
 import 'package:movies/presentation/search/cubit/selectable_option_cubit.dart';
+import 'package:movies/presentation/search/widgets/search_content.dart';
 import 'package:movies/presentation/search/widgets/search_field.dart';
-import 'package:movies/presentation/search/widgets/selectable_option.dart';
+import 'package:movies/presentation/search/widgets/search_options.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -26,44 +28,26 @@ class SearchPage extends StatelessWidget {
           BlocProvider(
             create: (context) => SelectableOptionCubit(),
           ),
+          BlocProvider(
+            create: (context) => SearchCubit(),
+          ),
         ],
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
-              const SearchField(),
-              const SizedBox(
+              SearchField(),
+              SizedBox(
                 height: 16,
               ),
-              BlocBuilder<SelectableOptionCubit, SearchType>(
-                builder: (context, state) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SelectableOption(
-                        title: "Movie",
-                        isSelected:
-                            context.read<SelectableOptionCubit>().state ==
-                                SearchType.moive,
-                        onTap: () => {
-                          context.read<SelectableOptionCubit>().selectMovie()
-                        },
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      SelectableOption(
-                        title: "TV",
-                        isSelected:
-                            context.read<SelectableOptionCubit>().state ==
-                                SearchType.tv,
-                        onTap: () =>
-                            {context.read<SelectableOptionCubit>().selectTv()},
-                      ),
-                    ],
-                  );
-                },
-              )
+              SearchOptions(),
+              SizedBox(
+                height: 16,
+              ),
+              Expanded(child: SearchContent()),
+              SizedBox(
+                height: 16,
+              ),
             ],
           ),
         ),
