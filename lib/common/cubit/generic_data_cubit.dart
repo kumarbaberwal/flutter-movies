@@ -6,7 +6,7 @@ class GenericDataCubit extends Cubit<GenericDataState> {
   GenericDataCubit() : super(GenericDataStateLoading());
 
   void getData<T>(UseCase usecase, {dynamic params}) async {
-    var returnedData = await usecase.call();
+    var returnedData = await usecase.call(params: params);
 
     returnedData.fold((error) {
       emit(GenericDataStateFailure(errorMessage: error));

@@ -18,7 +18,6 @@ class TrailerCubit extends Cubit<TrailerState> {
         initialVideoId: trailerEntity.key!,
         flags: const YoutubePlayerFlags(
           autoPlay: false,
-          mute: false,
         ),
       );
       emit(TrailerStateLoaded(youtubePlayerController: controller));

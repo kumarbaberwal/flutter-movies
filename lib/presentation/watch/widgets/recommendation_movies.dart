@@ -1,9 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/common/cubit/generic_data_cubit.dart';
+import 'package:movies/common/cubit/generic_data_state.dart';
 import 'package:movies/common/widgets/movie/movie_card.dart';
-import 'package:movies/presentation/watch/cubit/recommendation_movies_cubit.dart';
-import 'package:movies/presentation/watch/cubit/recommendation_movies_state.dart';
+import 'package:movies/domain/movie/entities/movie_entity.dart';
+import 'package:movies/domain/movie/usecases/get_recommendation_movies_use_case.dart';
+import 'package:movies/service_locator.dart';
 
 class RecommendationMovies extends StatelessWidget {
   final int movieId;
@@ -15,16 +18,17 @@ class RecommendationMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          RecommendationMoviesCubit()..getRecommendationMovies(movieId),
-      child: BlocBuilder<RecommendationMoviesCubit, RecommendationMoviesState>(
+      create: (context) => GenericDataCubit()
+        ..getData<List<MovieEntity>>(sl<GetRecommendationMoviesUseCase>(),
+            params: movieId),
+      child: BlocBuilder<GenericDataCubit, GenericDataState>(
         builder: (context, state) {
-          if (state is RecommendationMoviesStateLoading) {
+          if (state is GenericDataStateLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
-          if (state is RecommendationMoviesStateLoaded) {
+          if (state is GenericDataStateLoaded) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -43,17 +47,17 @@ class RecommendationMovies extends StatelessWidget {
                   child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        return MovieCard(movieEntity: state.movieEntity[index]);
+                        return MovieCard(movieEntity: state.data[index]);
                       },
                       separatorBuilder: (context, index) => const SizedBox(
                             width: 10,
                           ),
-                      itemCount: state.movieEntity.length),
+                      itemCount: state.data.length),
                 ),
               ],
             );
           }
-          if (state is RecommendationMoviesStateFailure) {
+          if (state is GenericDataStateFailure) {
             return Center(
               child: Text(state.errorMessage),
             );

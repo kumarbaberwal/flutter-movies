@@ -3,24 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/common/cubit/generic_data_cubit.dart';
 import 'package:movies/common/cubit/generic_data_state.dart';
-import 'package:movies/common/widgets/movie/movie_card.dart';
-import 'package:movies/domain/movie/entities/movie_entity.dart';
-import 'package:movies/domain/movie/usecases/get_similar_movies_use_case.dart';
+import 'package:movies/common/widgets/tv/tv_card.dart';
+import 'package:movies/domain/tv/entities/tv_entity.dart';
+import 'package:movies/domain/tv/usecases/get_similar_tv_use_case.dart';
 import 'package:movies/service_locator.dart';
 
-class SimilarMovies extends StatelessWidget {
-  final int movieId;
-  const SimilarMovies({
+class SimilarTv extends StatelessWidget {
+  final int tvId;
+  const SimilarTv({
     super.key,
-    required this.movieId,
+    required this.tvId,
   });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GenericDataCubit()
-        ..getData<List<MovieEntity>>(sl<GetSimilarMoviesUseCase>(),
-            params: movieId),
+        ..getData<List<TvEntity>>(sl<GetSimilarTvUseCase>(), params: tvId),
       child: BlocBuilder<GenericDataCubit, GenericDataState>(
         builder: (context, state) {
           if (state is GenericDataStateLoading) {
@@ -47,7 +46,7 @@ class SimilarMovies extends StatelessWidget {
                   child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        return MovieCard(movieEntity: state.data[index]);
+                        return TvCard(tvEntity: state.data[index]);
                       },
                       separatorBuilder: (context, index) => const SizedBox(
                             width: 10,
