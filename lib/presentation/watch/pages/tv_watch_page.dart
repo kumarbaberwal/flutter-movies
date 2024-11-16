@@ -3,6 +3,7 @@ import 'package:movies/common/widgets/appbar/app_bar.dart';
 import 'package:movies/domain/tv/entities/tv_entity.dart';
 import 'package:movies/presentation/watch/widgets/recommendation_tv.dart';
 import 'package:movies/presentation/watch/widgets/similar_tv.dart';
+import 'package:movies/presentation/watch/widgets/tv_keywords.dart';
 import 'package:movies/presentation/watch/widgets/tv_video_player.dart';
 import 'package:movies/presentation/watch/widgets/video_overview.dart';
 import 'package:movies/presentation/watch/widgets/video_title.dart';
@@ -31,6 +32,10 @@ class TvWatchPage extends StatelessWidget {
               height: 16,
             ),
             VideoTitle(title: tvEntity.name!),
+            const SizedBox(
+              height: 16,
+            ),
+            TvKeywords(tvId: tvEntity.id!),
             const SizedBox(
               height: 16,
             ),

@@ -6,6 +6,16 @@ import 'package:movies/service_locator.dart';
 
 class TvApiServiceImpl extends TvService {
   @override
+  Future<Either> getKeywords(int tvId) async {
+    try {
+      var response = await sl<DioClient>().get("${ApiUrl.tv}$tvId/keywords");
+      return Right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }
+
+  @override
   Future<Either> getPopularTv() async {
     try {
       var response = await sl<DioClient>().get(
@@ -40,6 +50,7 @@ class TvApiServiceImpl extends TvService {
 }
 
 abstract class TvService {
+  Future<Either> getKeywords(int tvId);
   Future<Either> getPopularTv();
   Future<Either> getRecommendationTv(int tvId);
   Future<Either> getSimilarTv(int tvId);

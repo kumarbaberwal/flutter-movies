@@ -17,6 +17,7 @@ import 'package:movies/domain/movie/usecases/get_recommendation_movies_use_case.
 import 'package:movies/domain/movie/usecases/get_similar_movies_use_case.dart';
 import 'package:movies/domain/movie/usecases/get_trending_movies_use_case.dart';
 import 'package:movies/domain/tv/repositories/tv_repository.dart';
+import 'package:movies/domain/tv/usecases/get_keywords_use_case.dart';
 import 'package:movies/domain/tv/usecases/get_popular_tv_use_case.dart';
 import 'package:movies/domain/tv/usecases/get_recommendation_tv_use_case.dart';
 import 'package:movies/domain/tv/usecases/get_similar_tv_use_case.dart';
@@ -52,4 +53,5 @@ void serviceLocator() {
   sl.registerSingleton<GetRecommendationTvUseCase>(
       GetRecommendationTvUseCase());
   sl.registerSingleton<GetSimilarTvUseCase>(GetSimilarTvUseCase());
+  sl.registerSingleton<GetKeywordsUseCase>(GetKeywordsUseCase());
 }
